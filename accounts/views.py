@@ -34,7 +34,8 @@ def login(request):
     pass
 
 def logout(request):
-    pass
+    auth_logout(request)
+    return redirect('accounts:index')
 
 def follow(request, user_pk):
     pass
