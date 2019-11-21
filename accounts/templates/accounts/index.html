@@ -1,0 +1,28 @@
+  
+{% extends 'accounts/base.html' %}
+{% load bootstrap4 %}
+
+{% block body %}
+<table>
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>username</th>
+            <th>email</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.pk }}</td>
+                <td><a href="{% url 'accounts:detail' user.pk %}">{{ user.username }}</a></td>
+                <td>{{ user.email }}</td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td>회원이 존재하지 않습니다.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
