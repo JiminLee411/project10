@@ -10,7 +10,7 @@ class Movie(models.Model):
     audience = models.IntegerField()
     poster_url = models.CharField(max_length=140)
     description = models.TextField()
-    genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
+    genres = models.ManyToManyField(Genre)
     like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="like_movies")
 
 
