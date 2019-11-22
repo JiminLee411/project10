@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'movies:movies_index' %}">EasyMovie</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <!-- <a class="nav-link" href="{% url 'movies:movies_index' %}">Home <span class="sr-only">(current)</span></a> -->
+            </li>
+            <!-- 로그인이 되어 있다면, -->
+            {% if user.is_authenticated %} <!-- 로그인이 되어 있는지 확인하는 method -->
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'accounts:detail' user.pk%}"> {{user.username}}</a> <!-- login과 관련된 모든 정보는 request에 저장되어 있기 때문에 context로 안넘겨줘도 사용 가능! -->
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'accounts:logout' %}"> 로그아웃</a>
+            </li>
+            <!-- 로그인이 되어 있지 않다면, -->
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'accounts:signup' %}"> 회원가입</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'accounts:login' %}"> 로그인</a>
+            </li>
+            {% endif %}
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
