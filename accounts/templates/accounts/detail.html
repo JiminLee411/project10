@@ -2,15 +2,16 @@
 {% block body %}
     <h1>{{ user_profile.username }}님의 프로필</h1>
     <hr>
-    <!-- {% if user.is_authenticated %}
+    {% if user.is_authenticated %}
         <a href="{% url 'accounts:follow' user_profile.pk %}">
             <button>
                 {% if user in user_profile.followings.all %}Un{% endif %}Follow
             </button>
         </a>
-    {% endif %} -->
+    {% endif %}
     <br>
     {{ user_profile.followings.count }}명이 좋아합니다.
+    {{ user_profile.followers.count }}명을 좋아합니다.
 
     <h3>{{ user_profile.username }}님이 작성한 평점 정보</h3>
     <ul>
