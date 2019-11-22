@@ -3,7 +3,29 @@
 {% load bootstrap4 %}
 
 {% block body %}
-<table>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">User</th>
+        <th scope="col">Follower</th>
+        <th scope="col">Following</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for user in users %}
+      <tr>
+        <th scope="row">{{ user.id }}</th>
+        <td>
+        <a href="{% url 'accounts:detail' user.pk %}">{{ user.username }}</a>
+        </td>
+        <td>{{ user.followings.count }}</td>
+        <td>{{ user.followers.count }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+<!-- <table>
     <thead>
         <tr>
             <th>id</th>
@@ -23,5 +45,5 @@
             </tr>
         {% endfor %}
     </tbody>
-</table>
+</table> -->
 {% endblock %}
