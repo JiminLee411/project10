@@ -1,8 +1,9 @@
 {% extends 'accounts/base.html' %}
-
+{% load static %}
 {% block body %}
+    <img src="{% static 'movies/background2.jpg' %}" alt ="" height = 200 width=100%>
     {% for movie in movies %}
-        <a href="{% url 'movies:detail' movie.pk %}">
+        <a href="{% url 'movies:movies_detail' movie.pk %}">
             <img src="{{ movie.poster_url }}" alt="{{ movie.title }}" style="width:20vw;">
         </a>
     {% empty %}

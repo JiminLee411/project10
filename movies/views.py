@@ -33,19 +33,14 @@ def review_create(request, movie_pk):
             review.save()
     else:
         messages.warning(request, '로그인이 필요합니다.')
-    return redirect('movies:detail', movie_pk)
+    return redirect('movies:movies_detail', movie_pk)
 
 
-def review_update_delete(request, review_pk):
+def review_delete(request, review_pk):
     review = get_object_or_404(Review, pk=review_pk)
-    if request.method == 'PUT':
-        serializer = ReviewSerializers(data=request.data, instance=review)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            return Response({'message': '수정되었습니다.'})
-    else:
-        review.delete()
-        return Response({'message': '삭제되었습니다.'})
+    review.delete()
+    messages.warning(request, '리뷰가 삭제되었습니다.')
+    return redirect('movies:movies_detail', movie_pk)
 
 @require_POST
 def like(request, movie_pk):
@@ -57,4 +52,4 @@ def like(request, movie_pk):
             request.user.like_movies.add(movie)
     else:
         messages.warning(request, '로그인이 필요한 기능입니다.')
-    return redirect('movies:detail', movie_pk)
+    return redirect('movies:movies_detail', movie_pk)
